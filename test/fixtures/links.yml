@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  stack: one
+  displayname: MyString
+  url: MyString
+  position: 1
+
+two:
+  stack: two
+  displayname: MyString
+  url: MyString
+  position: 1
