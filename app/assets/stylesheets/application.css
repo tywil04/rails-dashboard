@@ -13,3 +13,165 @@
  *= require_tree .
  *= require_self
  */
+
+ :root {
+    --bg1: rgb(28, 27, 34);
+    --bg2: rgb(43, 42, 54);
+    --bg3: rgb(66, 65, 77);
+
+    --text1: rgb(183, 182, 191);
+    --text2: rgb(245, 245, 245);
+
+    --border: rgb(72, 72, 78);
+}
+
+html, body {
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Specific */
+.title {
+    color: var(--text2);
+    font-weight: bold;
+    font-size: x-large;
+    padding: 5px 20px 5px 20px;
+}
+
+.title::before {
+    content: "//";
+    padding-right: 5px;
+    color: var(--text1);
+    float: left;
+}
+
+.bg {
+    background: var(--bg1);
+    color: var(--text1);
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.category {
+    width: fit-content;
+    height: fit-content;
+    padding: 20px 15px 20px 15px;
+}
+
+.category *.inner-category-container > *:nth-child(2n) {
+    /* Even Children */
+    background: var(--bg1);
+}
+
+.category *.inner-category-container > *:not(:nth-child(2n)) {
+    /* Odd Children */
+    background: var(--bg2);
+}
+
+.category *.inner-category-container > * {
+    transition-duration: 75ms;
+    padding: 2.5px 10px 2.5px 10px;
+    border-radius: 6px;
+    color: var(--text1);
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.category *.inner-category-container > *:hover {
+    color: var(--text2)
+}
+
+.category *.category-title {
+    color: var(--text2);
+    font-weight: bold;
+    text-align: left;
+    padding: 2.5px 10px 7.5px 10px;
+}
+
+.category *.category-title::before {
+    content: "/";
+    padding-right: 5px;
+    color: var(--text1);
+    float: left;
+}
+
+.category *.category-title::after {
+    content: "/";
+    padding-left: 5px;
+    color: var(--text1);
+    float: right;
+}
+
+/* Utilities */
+.v-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.h-box {
+    display: flex;
+    flex-direction: row;
+}
+
+.w-fit {
+    width: fit-content;
+}
+
+.w-fill {
+    width: 100%;
+}
+
+.centre {
+    justify-content: center;
+}
+
+p {
+    padding: 0;
+    margin: 0;
+}
+
+.monokai-0 {
+    color: #ff6188 !important;
+}
+
+.monokai-1 {   
+    color: #fc9867 !important;
+}
+
+.monokai-2 {   
+    color: #ffd866 !important;
+}
+
+.monokai-3 {   
+    color: #a9dc76 !important;
+}
+
+.monokai-4 {   
+    color: #78dce8 !important;
+}
+
+.monokai-5 {   
+    color: #ab9df2 !important;
+}
+
+.commandbar {
+    border-radius: 6px;
+    padding: 5px 10px 5px 10px;
+    margin: 0px 15px 30px 15px;
+    background: var(--bg2);
+    border: none !important;
+    outline: none !important;
+    color: var(--text2);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    font-size: 15px;
+}
+
+.commandbar::placeholder {
+    color: var(--text1);
+}

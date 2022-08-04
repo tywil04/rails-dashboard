@@ -1,0 +1,7 @@
+<div class="category v-box" id="<%= "stack_#{stack.id}" %>">
+    <p class="category-title monokai-<%= (stack.position - 1) % 6 %>"><%= stack.title %></p>
+
+    <div class="inner-category-container v-box" id="<%= "stack_#{stack.id}_links" %>">
+        <%= render Link.where(stack: stack) %>
+    </div>
+</div>
