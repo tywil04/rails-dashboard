@@ -9,9 +9,10 @@ Rails.application.routes.draw do
 
   resources :stacks 
   delete "/stacks", to: "stacks#delete"
-  put "/stacks", to: "stacks#update"
+  put "/stacks", to: "stacks#rename"
 
   resources :links
   delete "/links", to: "links#delete"
-  put "/links", to: "links#update"
+  put "/links", to: "links#rename"
+  patch "/links", to: "links#relink"
 end
