@@ -1,68 +1,90 @@
-<main class="bg h-box centre">
-    <div class="v-box centre w-fit">
-        <input data-controller="commandbar" data-commandbar-target="input" class="commandbar" placeholder="> for command, anything else will search duckduckgo" type="text" autofocus="false"/>
+<div class="bg" data-controller="topbuttons">
+    <div class="top-button-holder">
+        <div class="flex-left">
+            <button data-action="click->topbuttons#opennewstack" class="minimal-button">New Stack</button>
+            <button class="minimal-button">New Link</button>
+            <button class="minimal-button">New Shortcut</button>
+            <button class="minimal-button">Delete Mode</button>
+            <button class="minimal-button">Edit Mode</button>
+        </div>
 
-        <%= turbo_stream_from "stacks" %>
-        <div class="h-box centre w-fit" id="stacks">
-            <%= turbo_stream_from "links" %>
-
-            <%= render @stacks %>
-
-            <!--
-            <div class="category v-box">
-                <p class="category-title monokai-1">Important</p>
-                <div class="inner-category-container v-box">
-                    <a href="https://www.nationwide.co.uk">Nationwide</a>
-                    <a href="https://protonmail.com">Proton Mail</a>
-                </div>
-            </div>
-            
-            <div class="category v-box">
-                <p class="category-title monokai-2">College</p>
-                <div class="inner-category-container v-box">
-                    <a href="https://office.com">Office 365</a>
-                    <a href="https://teams.microsoft.com">Teams</a>
-                    <a href="https://dashboard.eastcoast.ac.uk">L6FC Dashboard</a>
-                    <a href="https://moodle.eastcoast.ac.uk">Moodle</a>
-                    <a href="https://ucas.com">UCAS</a>
-                </div>
-            </div>
-
-            <div class="category v-box">
-                <p class="category-title monokai-3">Media</p>
-                <div class="inner-category-container v-box">
-                    <a href="https://youtube.com">YouTube</a>
-                    <a href="https://yewtu.be">YewTube</a>
-                    <a href="https://watchtoday.tv">Watch Today</a>
-                    <a href="https://reddit.com">Reddit</a>
-                </div>
-            </div>
-
-            <div class="category v-box">
-                <p class="category-title monokai-4">Homelab</p>
-                <div class="inner-category-container v-box">
-                    <a href="https://vault.tylerw.co.uk">Bitwarden</a>
-                    <a href="https://code.tylerw.co.uk">Code Server</a>
-                    <a href="https://npm.tylerw.co.uk">Nginx Proxy Manager</a>
-                    <a href="https://portainer.tylerw.co.uk">Portainer</a>
-                    <a href="https://pihole.tylerw.co.uk/admin">Pi Hole</a>
-                    <a href="https://tailscale.com">Tailscale</a>
-                    <a href="https://ionos.co.uk">Ionos</a>
-                </div>
-            </div>
-
-            <div class="category v-box">
-                <p class="category-title monokai-5">Development</p>
-                <div class="inner-category-container v-box">
-                    <a href="https://github.com/tywil04">GitHub</a>
-                    <a href="https://stackoverflow.com">Stack Overflow</a>
-                </div>
-            </div>
-            -->
-
+        <div class="flex-right">
+            <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "minimal-button" %>
         </div>
     </div>
-</main>
+
+    <main class="bg h-box centre">
+        <div class="v-box centre w-fit">    
+            <input data-controller="searchbar" data-searchbar-target="input" class="commandbar" autocomplete="off" placeholder="Search DuckDuckGo" type="text" autofocus="false"/>
+
+            <%= turbo_stream_from "stacks" %>
+            <div class="h-box centre w-fit" id="stacks">
+                <%= turbo_stream_from "links" %>
+
+                <%= render @stacks %>
+
+                <!--
+                <div class="category v-box">
+                    <p class="category-title monokai-1">Important</p>
+                    <div class="inner-category-container v-box">
+                        <a href="https://www.nationwide.co.uk">Nationwide</a>
+                        <a href="https://protonmail.com">Proton Mail</a>
+                    </div>
+                </div>
+                
+                <div class="category v-box">
+                    <p class="category-title monokai-2">College</p>
+                    <div class="inner-category-container v-box">
+                        <a href="https://office.com">Office 365</a>
+                        <a href="https://teams.microsoft.com">Teams</a>
+                        <a href="https://dashboard.eastcoast.ac.uk">L6FC Dashboard</a>
+                        <a href="https://moodle.eastcoast.ac.uk">Moodle</a>
+                        <a href="https://ucas.com">UCAS</a>
+                    </div>
+                </div>
+
+                <div class="category v-box">
+                    <p class="category-title monokai-3">Media</p>
+                    <div class="inner-category-container v-box">
+                        <a href="https://youtube.com">YouTube</a>
+                        <a href="https://yewtu.be">YewTube</a>
+                        <a href="https://watchtoday.tv">Watch Today</a>
+                        <a href="https://reddit.com">Reddit</a>
+                    </div>
+                </div>
+
+                <div class="category v-box">
+                    <p class="category-title monokai-4">Homelab</p>
+                    <div class="inner-category-container v-box">
+                        <a href="https://vault.tylerw.co.uk">Bitwarden</a>
+                        <a href="https://code.tylerw.co.uk">Code Server</a>
+                        <a href="https://npm.tylerw.co.uk">Nginx Proxy Manager</a>
+                        <a href="https://portainer.tylerw.co.uk">Portainer</a>
+                        <a href="https://pihole.tylerw.co.uk/admin">Pi Hole</a>
+                        <a href="https://tailscale.com">Tailscale</a>
+                        <a href="https://ionos.co.uk">Ionos</a>
+                    </div>
+                </div>
+
+                <div class="category v-box">
+                    <p class="category-title monokai-5">Development</p>
+                    <div class="inner-category-container v-box">
+                        <a href="https://github.com/tywil04">GitHub</a>
+                        <a href="https://stackoverflow.com">Stack Overflow</a>
+                    </div>
+                </div>
+                -->
+
+            </div>
+
+            <dialog data-topbuttons-target="newstack" class="dialog hidden">
+                Really Long Test Content
+            </dialog>
+        </div>
+
+        <div data-topbuttons-target="backdrop" class="blurred-backdrop hidden"></div>
+    </main>
+</div>
 
 <!-- 
        <p class="notice"><%= notice %></p>

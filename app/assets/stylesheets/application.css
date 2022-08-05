@@ -23,11 +23,16 @@
     --text2: rgb(245, 245, 245);
 
     --border: rgb(72, 72, 78);
+
+    --shadow1: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 html, body {
-    width: 100vw;
-    height: 100vh;
+    background: var(--bg1);
+    color: var(--text1);
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
     padding: 0;
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
@@ -49,11 +54,8 @@ html, body {
 }
 
 .bg {
-    background: var(--bg1);
-    color: var(--text1);
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
+    width: 100%;
+    height: 100%;
 }
 
 .category {
@@ -82,7 +84,7 @@ html, body {
 }
 
 .category *.inner-category-container > *:hover {
-    color: var(--text2)
+    color: var(--text2);
 }
 
 .category *.category-title {
@@ -170,8 +172,76 @@ p {
     -webkit-appearance: none;
     -moz-appearance: none;
     font-size: 15px;
+    transition-duration: 100ms;
 }
 
 .commandbar::placeholder {
     color: var(--text1);
+}
+
+.commandbar:focus {
+    box-shadow: var(--shadow1);
+}
+
+.dialog {
+    background: var(--bg3);
+    border: none;
+    border-radius: 6px;
+    box-shadow: var(--shadow1);
+    z-index: 99;
+    transition-duration: 300ms;
+    opacity: 100%;
+    pointer-events: auto;
+}
+
+.blurred-backdrop {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(5px);
+    z-index: 98;
+    transition-duration: 100ms;
+    pointer-events: none;
+}
+
+.hidden {
+    pointer-events: none;
+    opacity: 0% !important;
+}
+
+.top-button-holder {
+    position: absolute;
+    padding: 10px;
+    background: var(--bg2);
+    width: calc(100% - 20px); /* keep padding into consideration */
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-left {
+    margin-right: auto;
+}
+
+.flex-left > * {
+    margin-right: 5px;
+}
+
+.flex-right {
+    margin-left: auto;
+}
+
+.flex-right > * {
+    margin-left: 5px;
+}
+
+.minimal-button {
+    background: none;
+    border: none;
+    color: var(--text1);
+    transition-duration: 100ms;
+}
+
+.minimal-button:hover {
+    color: var(--text2);
+    cursor: pointer;
 }
