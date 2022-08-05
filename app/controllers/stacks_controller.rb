@@ -4,13 +4,18 @@ class StacksController < ApplicationController
     end
 
     def delete 
-        @stack = Stack.find_by(user: current_user, title: params[:stack][:title])
+        @stack = get_stack
         Link.where(stack: @stack).destroy_all
         @stack.destroy
     end
 
     def rename 
+        get_stack.update(title: params[:newtitle])
+    end
+
+    private 
+
+    def get_stack 
         @stack = Stack.find_by(user: current_user, title: params[:stack][:title])
-        @stack.update(title: params[:newtitle])
     end
 end

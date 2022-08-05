@@ -49,6 +49,19 @@ export default class extends Controller {
                     displayname: tokens[3],
                     url: tokens[4],
                 })
+            } else if (tokens[1] === "shortcut") {
+                if (!tokens[2].startsWith("https://") && !tokens[2].startsWith("http://") && !tokens[2].startsWith("/")) {
+                    return;
+                }
+
+                tokens[3] = tokens[3] === undefined ? true: tokens[3].toLowerCase() === "public" ? false: true;
+
+                this.request("/shortcuts", "POST", {
+                    url: tokens[2],
+                    private: tokens[3],
+                }).then(response => response.json().then(rid => {
+                    console.log(rid)
+                }))
             }
         } else if ( this.isIn(tokens[0], ["delete", "remove"]) ) {
             if (tokens[1] === "stack") {
@@ -60,7 +73,11 @@ export default class extends Controller {
                     stack: tokens[2],
                     displayname: tokens[3],
                 })
-            }       
+            } else if (tokens[1] === "shortcut") {
+                this.request("/shortcuts", "DELETE", {
+                    rid: tokens[2],
+                })
+            }   
         } else if ( this.isIn(tokens[0], ["rename", "retitle"]) ) {
             if (tokens[1] === "stack") {
                 this.request("/stacks", "PUT", {
@@ -86,7 +103,7 @@ export default class extends Controller {
     request(url, method, body) {
         body["authenticity_token"] = document.querySelector("meta[name=csrf-token]").content
 
-        fetch(url, {
+        return fetch(url, {
             method: method.toUpperCase(),
             body: JSON.stringify(body),
             headers: {

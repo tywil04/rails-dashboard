@@ -7,12 +7,16 @@ Rails.application.routes.draw do
 
   root "pages#index"
 
-  resources :stacks 
+  post "/stacks", to: "stacks#create"
   delete "/stacks", to: "stacks#delete"
   put "/stacks", to: "stacks#rename"
 
-  resources :links
+  post "links", to: "links#create"
   delete "/links", to: "links#delete"
   put "/links", to: "links#rename"
   patch "/links", to: "links#relink"
+
+  post "/shortcuts", to: "shortcuts#create"
+  delete "/shortcuts", to: "shortcuts#delete"
+  get "/s/:rid", to: "shortcuts#show"
 end
